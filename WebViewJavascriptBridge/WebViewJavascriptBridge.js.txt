@@ -10,7 +10,7 @@
 	
 	var responseCallbacks = {}
 	var uniqueId = 1
-	
+	var flag = false
 	function _createQueueReadyIframe(doc) {
 		messagingIframe = doc.createElement('iframe')
 		messagingIframe.style.display = 'none'
@@ -19,6 +19,8 @@
 	}
 
 	function init(messageHandler) {
+		if (true == flag) {return}
+		flag = true
 		if (WebViewJavascriptBridge._messageHandler) { throw new Error('WebViewJavascriptBridge.init called twice') }
 		WebViewJavascriptBridge._messageHandler = messageHandler
 		var receivedMessages = receiveMessageQueue
